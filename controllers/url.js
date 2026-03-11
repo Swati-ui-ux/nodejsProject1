@@ -3,6 +3,7 @@ const URL = require("../models/url")
 
 async function genrateShortUrl(req, res) {
     try {
+
         const body = req.body
 
         if (!body || !body.url) {
@@ -14,15 +15,13 @@ async function genrateShortUrl(req, res) {
         await URL.create({
             shortId: shortId,
             redirect: body.url,
-            visitHistory: []
+            visitHistory: [],
+            createdBy: req.user._id,
         })
 
-        const allUrls = await URL.find({})
+        const allUrls = await URL.find({ createdBy: req.user._id })
 
-        return res.render("home", {
-            id: shortId,
-            urls: allUrls
-        })
+        return res.redirect("/")
 
     } catch (error) {
         console.log("Error form short generate", error)

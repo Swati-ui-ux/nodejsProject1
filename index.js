@@ -6,7 +6,8 @@ dotenv.config()
 const express = require("express")
 const path = require("path")
 const mongoose = require("mongoose")
-
+const cookieParser = require("cookie-parser")
+const {restrictToLoggedUserOnly,checkAuth} = require("./middleware/auth")
 // create express application
 const app = express()
 
@@ -14,6 +15,8 @@ const app = express()
 const ejs = require("ejs")
 const staticRoute = require("./routes/staticRouter")
 const urlRoute = require("./routes/url")
+
+const userRoute = require("./routes/user")
 
 // import model
 const URL = require("./models/url")
@@ -39,12 +42,14 @@ app.use(express.urlencoded({ extended: false }))
 // middleware to parse JSON data
 app.use(express.json())
 
+app.use(cookieParser())
 // route for URL related APIs
-app.use("/url", urlRoute)
+app.use("/url",restrictToLoggedUserOnly, urlRoute)
 
 // route for static pages (like home page)
-app.use("/", staticRoute)
+app.use("/",checkAuth, staticRoute)
 
+app.use("/user",userRoute)
 // route to handle redirection using shortId
 app.get("/url/:shortId", async (req, res) => {
   try {

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        body {
+
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+
+
+        #form {
+            border: 2px solid gray;
+            padding: 20px;
+            /* margin: 20px; */
+            width: 300px;
+            border-radius: 10px;
+        }
+
+        .input {
+            width: 90%;
+            margin: 20px;
+        }
+
+        .inp {
+            width: 100%;
+            border-radius: 10px;
+            padding: 10px;
+            border: 1px solid gray;
+            box-sizing: border-box;
+        }
+
+        #btn {
+            width: 95%;
+            margin-left: 10px;
+            padding: 10px;
+            border-radius: 10px;
+            border: none;
+            background: #42adf5;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="data">
+
+        <form action="/user" id="form" method="post">
+            <h1>Sign Up</h1>
+            <div class="input">
+                <label for="">Full Name</label>
+                <input type="text" required name="name" class="inp">
+            </div>
+            <div class="input">
+                <label for="">Email Name</label>
+                <input type="email" required name="email" class="inp">
+            </div>
+            <div class="input">
+                <label for="">Password Name</label>
+                <input type="password" required name="password" class="inp">
+            </div>
+            <button type="submit" id="btn">Sign Up</button>
+        </form>
+    </div>
+</body>
+
+</html>
