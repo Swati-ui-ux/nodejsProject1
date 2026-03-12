@@ -21,8 +21,8 @@ async function userLogin(req,res) {
        console.log("User",user)
        if (!user) return res.redirect("/login")
        const token = setUser(user)
-       res.cookie("uid",token)
-       return res.redirect("/")
+    //    res.cookie("uid", token)
+       return res.json({token})
    } catch (error) {
        console.log("Error from sign up",error)
        
